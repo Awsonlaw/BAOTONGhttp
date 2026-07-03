@@ -1646,26 +1646,26 @@
         });
 
         // ========== 宝通国际订单查询（后端 API） ==========
-        const FALLBACK_ORDERS = {
-            "BT20240701001": { no: "BT20240701001", type: "海运整柜 (FCL)", route: "深圳港 → 洛杉矶港", status: "in-transit", statusText: "运输中", eta: "2026-07-20", vessel: "CMA CGM JACQUES SAADE / V.123E", container: "CCLU1234567", client: "深圳华贸进出口有限公司", steps: [
-                { title: "已订舱", time: "2026-07-01 10:30", desc: "订舱确认，装载 40HQ 集装箱", done: true },
-                { title: "已装柜", time: "2026-07-03 14:00", desc: "货物已入仓并完成装箱", done: true },
-                { title: "已报关", time: "2026-07-04 09:15", desc: "出口报关放行", done: true },
-                { title: "已起运", time: "2026-07-06 08:00", desc: "船舶已离港，航程约 14 天", done: true },
-                { title: "运输中", time: "2026-07-10 12:00", desc: "正横跨太平洋，预计7月20日抵达", done: true, current: true },
-                { title: "清关中", time: "预计 2026-07-20", desc: "抵达目的港后进口清关", done: false },
-                { title: "已签收", time: "预计 2026-07-25", desc: "提柜配送至目的地", done: false }
-            ]},
-            "BT20240615002": { no: "BT20240615002", type: "国际空运", route: "广州白云机场 → 纽约肯尼迪机场", status: "delivered", statusText: "已签收", eta: "2026-06-22", vessel: "CZ327 / MAWB: 784-12345678", container: "N/A", client: "广州鑫达电子科技有限公司", steps: [
-                { title: "已订舱", time: "2026-06-15 09:00", desc: "空运仓位已确认", done: true },
-                { title: "已入仓", time: "2026-06-16 11:30", desc: "货物已送达机场仓库", done: true },
-                { title: "已报关", time: "2026-06-17 10:00", desc: "出口报关放行", done: true },
-                { title: "已起飞", time: "2026-06-18 02:00", desc: "航班准时起飞", done: true },
-                { title: "已到达", time: "2026-06-18 14:00", desc: "抵达纽约肯尼迪机场", done: true },
-                { title: "清关完成", time: "2026-06-19 16:30", desc: "进口清关完成，放行", done: true },
-                { title: "已签收", time: "2026-06-22 10:00", desc: "货物已签收，派送完成", done: true, current: true }
-            ]}
-        };
+        const FALLBACK_ORDERS = {};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         async function handleSearch() {
             var input = document.getElementById("orderInput");
@@ -1691,8 +1691,8 @@
             } catch(e) {}
             setTimeout(function() {
                 loadingEl.style.display = "none";
-                var fb = FALLBACK_ORDERS[no];
-                if (fb) { showOrder(fb); return; }
+                // 无本地回退数据，直接从API获取
+                
                 errorEl.textContent = "未找到订单 " + no;
                 errorEl.style.display = "block";
             }, 300);

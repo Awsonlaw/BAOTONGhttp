@@ -82,7 +82,7 @@
         }
 
         .logo-text .main {
-            font-size: 1.1rem;
+            font-size: 1.7rem;
         }
 
         .logo-text .sub {
@@ -107,30 +107,31 @@
             color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            transition: all 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--secondary);
+            background: rgba(49, 130, 206, 0.1);
         }
 
         .nav-links a.active {
-            color: var(--secondary) !important;
-            font-weight: 600;
-        }
-        .nav-links a.active.nav-cta {
             background: var(--primary) !important;
             color: white !important;
+            font-weight: 600;
         }
 
+
         .nav-cta {
-            padding: 0.6rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 6px;
             transition: all 0.3s;
         }
 
         .nav-cta:hover {
-            background: var(--primary-light) !important;
+            background: var(--primary-light);
+            color: white;
         }
 
         /* 语言切换按钮 */
@@ -702,6 +703,26 @@
             margin-bottom: 1rem;
         }
 
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            filter: brightness(10);
+        }
+
+        .footer-brand-main {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-brand-sub {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
         .footer-brand p {
             color: rgba(255,255,255,0.7);
             line-height: 1.7;
@@ -791,7 +812,7 @@
             }
 
             .logo-text .main {
-                font-size: 0.95rem;
+                font-size: 1.15rem;
             }
 
             .logo-text .sub {
@@ -1045,15 +1066,15 @@
                 <p data-i18n="about.p2">我们拥有一支经验丰富的专业团队，能够为客户提供从货物出运到目的港交付的全流程物流服务。多年来，我们凭借优质的服务和良好的信誉，赢得了众多国内外客户的信赖与支持。</p>
                 <div class="about-features">
                     <div class="about-feature">
-                        <span class="about-feature-icon">?</span>
+                        <span class="about-feature-icon">✓</span>
                         <span data-i18n="about.f1">专业资质认证</span>
                     </div>
                     <div class="about-feature">
-                        <span class="about-feature-icon">?</span>
+                        <span class="about-feature-icon">✓</span>
                         <span data-i18n="about.f2">全球代理网络</span>
                     </div>
                     <div class="about-feature">
-                        <span class="about-feature-icon">?</span>
+                        <span class="about-feature-icon">✓</span>
                         <span data-i18n="about.f3">一对一专属服务</span>
                     </div>
                     <div class="about-feature">
@@ -1264,7 +1285,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <h3 data-i18n="footer.brand">📦 宝通国际 | 国际贸易·国际货运综合服务商</h3>
+                <h3 data-i18n="footer.brand"><img src="logo.png" alt="宝通国际" class="footer-logo"><span class="footer-brand-main">宝通国际</span><br><span class="footer-brand-sub">国际贸易·国际货运综合服务商</span></h3>
                 <p data-i18n="footer.brand.desc">专业国际贸易团队，为您的进出口业务保驾护航。</p>
             </div>
             <div class="footer-links">
@@ -1406,7 +1427,7 @@
                 'form.service': '服务类型',
                 'form.message': '您的需求',
                 'form.submit': '提交咨询',
-                'footer.brand': '📦 宝通国际 | 国际贸易·国际货运综合服务商',
+                'footer.brand': '宝通国际<br>国际贸易·国际货运综合服务商',
                 'footer.brand.desc': '专业国际贸易团队，为您的进出口业务保驾护航。',
                 'footer.quick': '快速链接',
                 'footer.copyright': '&copy; 2024 宝通国际 版权所有 | 粤ICP备XXXXXXXX号',
@@ -1520,7 +1541,7 @@
                 'form.service': 'Service Type',
                 'form.message': 'Your Requirements',
                 'form.submit': 'Submit Inquiry',
-                'footer.brand': '📦 Baotong International | Trade & Freight',
+                'footer.brand': 'Baotong International<br>Trade & Freight',
                 'footer.brand.desc': 'Professional international trade team, safeguarding your import/export business.',
                 'footer.quick': 'Quick Links',
                 'footer.copyright': '&copy; 2024 Baotong International. All rights reserved.',

@@ -1287,8 +1287,6 @@
                 'nav.services': '服务项目',
                 'nav.why': '为什么选择我们',
                 'nav.tracking': '订单查询',
-                'nav.tracking': '订单查询',
-                'nav.tracking': '订单查询',
                 'nav.contact': '联系我们',
                 'hero.title': '连接世界<br>畅通全球贸易',
                 'hero.desc': '宝通国际是专业的国际贸易·国际货运综合服务商，致力于为您提供专业、高效、可靠的进出口贸易和物流解决方案。',
@@ -1401,8 +1399,6 @@
                 'nav.about': 'About Us',
                 'nav.services': 'Services',
                 'nav.why': 'Why Choose Us',
-                'nav.tracking': 'Order Tracking',
-                'nav.tracking': 'Order Tracking',
                 'nav.tracking': 'Order Tracking',
                 'nav.contact': 'Contact',
                 'hero.title': 'Connecting the World<br>Empowering Global Trade',
@@ -1690,8 +1686,8 @@
             // 17Track 数据源标识
             if (order.trackingSource === "17Track") {
                 var liveUrl = order.liveUrl || "";
-                var sourceHtml = "<div style=\\"text-align:center;margin-bottom:12px;padding:10px;background:#ebf8ff;border-radius:8px;font-size:0.82rem;color:#2b6cb0\\">📡 实时物流数据由 17Track 提供";
-                if (liveUrl) sourceHtml += " · <a href=\\"" + liveUrl + "\\" target=\\"_blank\\" rel=\\"noopener\\" style=\\"color:#2b6cb0;font-weight:500;text-decoration:underline\\">在 17Track 查看完整轨迹 →</a>";
+                var sourceHtml = "<div style=\"text-align:center;margin-bottom:12px;padding:10px;background:#ebf8ff;border-radius:8px;font-size:0.82rem;color:#2b6cb0\">📡 实时物流数据由 17Track 提供";
+                if (liveUrl) sourceHtml += " · <a href=\"" + liveUrl + "\" target=\"_blank\" rel=\"noopener\" style=\"color:#2b6cb0;font-weight:500;text-decoration:underline\">在 17Track 查看完整轨迹 →</a>";
                 sourceHtml += "</div>";
                 var existingSource = document.getElementById("trackingSourceTag");
                 if (!existingSource) {
@@ -1747,3 +1743,5 @@
     
 </body>
 </html>
+
+

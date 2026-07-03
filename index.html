@@ -114,6 +114,15 @@
             color: var(--secondary);
         }
 
+        .nav-links a.active {
+            color: var(--secondary) !important;
+            font-weight: 600;
+        }
+        .nav-links a.active.nav-cta {
+            background: var(--secondary) !important;
+            color: white !important;
+        }
+
         .nav-cta {
             background: var(--primary);
             color: white !important;
@@ -1636,6 +1645,41 @@
         });
 
         // ====== 导航栏滚动效果 ======
+
+        // ====== 导航栏活跃状态切换 ======
+        function setActiveNav(id) {
+            document.querySelectorAll(".nav-links a").forEach(function(link) {
+                link.classList.remove("active");
+            });
+            var target = document.querySelector(".nav-links a[href=\\"#" + id + "\\"]");
+            if (target) target.classList.add("active");
+        }
+
+        // 点击导航链接时切换活跃状态
+        document.querySelectorAll(".nav-links a").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                var href = this.getAttribute("href");
+                if (href && href.startsWith("#")) {
+                    setActiveNav(href.substring(1));
+                }
+            });
+        });
+
+        // 滚动时自动高亮当前区域
+        function updateActiveOnScroll() {
+            var sections = document.querySelectorAll("section[id]");
+            var scrollPos = window.scrollY + 150;
+            var currentId = "";
+            sections.forEach(function(section) {
+                if (section.offsetTop <= scrollPos) {
+                    currentId = section.id;
+                }
+            });
+            if (currentId) setActiveNav(currentId);
+        }
+
+        window.addEventListener("scroll", updateActiveOnScroll);
+        window.addEventListener("load", updateActiveOnScroll);
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {

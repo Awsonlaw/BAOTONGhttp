@@ -136,6 +136,21 @@
             gap: 0;
         }
 
+        .admin-login {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .admin-login:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         .lang-btn {
             background: none;
             border: none;
@@ -958,6 +973,7 @@
                     <button class="lang-btn active" data-lang="zh">中</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
+                <a href="https://baoton-ghttp.vercel.app/admin.html" class="admin-login" target="_blank" title="管理员登录"><span data-i18n="nav.admin">管理员登录</span></a>
                 <div class="mobile-menu-btn">
                     <span></span>
                     <span></span>
@@ -1288,6 +1304,7 @@
                 'nav.why': '为什么选择我们',
                 'nav.tracking': '订单查询',
                 'nav.contact': '联系我们',
+                'nav.admin': '管理员登录',
                 'hero.title': '连接世界<br>畅通全球贸易',
                 'hero.desc': '宝通国际是专业的国际贸易·国际货运综合服务商，致力于为您提供专业、高效、可靠的进出口贸易和物流解决方案。',
                 'hero.cta1': '免费咨询报价',
@@ -1401,6 +1418,7 @@
                 'nav.why': 'Why Choose Us',
                 'nav.tracking': 'Order Tracking',
                 'nav.contact': 'Contact',
+                'nav.admin': 'Admin Login',
                 'hero.title': 'Connecting the World<br>Empowering Global Trade',
                 'hero.desc': 'Baotong International is a professional international trade and freight service provider, dedicated to offering professional, efficient, and reliable import/export trade and logistics solutions.',
                 'hero.cta1': 'Get Free Quote',

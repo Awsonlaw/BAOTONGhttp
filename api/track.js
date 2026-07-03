@@ -1,9 +1,10 @@
 ﻿// 宝通国际 - 订单查询 API
 // ==========================================
 // 数据由后台管理员手动更新
+// 支持 Upstash Redis (免费)、Vercel KV、内存存储三种方式
 // ==========================================
 
-// 种子数据（演示用，正式使用时会通过管理后台添加）
+// 种子数据
 const SEED_DATA = {
   "BT20240701001": {
     no: "BT20240701001", type: "海运整柜 (FCL)",
@@ -54,10 +55,70 @@ const SEED_DATA = {
   }
 };
 
-// 内存存储
+// 内存存储（后备）
 let memoryStore = null;
 
+// ===== Upstash Redis REST API 工具函数 =====
+const UPSTASH_REST_URL = process.env.UPSTASH_REDIS_REST_URL || "";
+const UPSTASH_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || "";
+
+async function upstashCmd(cmd, ...args) {
+  const res = await fetch(UPSTASH_REST_URL, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + UPSTASH_REST_TOKEN,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify([cmd, ...args])
+  });
+  const data = await res.json();
+  if (data.error) throw new Error("Upstash: " + data.error);
+  return data.result;
+}
+
+async function initUpstash() {
+  // 检查是否已初始化
+  const exists = await upstashCmd("EXISTS", "baotong_orders");
+  if (exists === 0) {
+    // 写入种子数据
+    for (const [k, v] of Object.entries(SEED_DATA)) {
+      await upstashCmd("HSET", "baotong_orders", k, JSON.stringify(v));
+    }
+  }
+}
+
+async function upstashGetOrders() {
+  const raw = await upstashCmd("HGETALL", "baotong_orders");
+  const orders = [];
+  for (let i = 0; i < raw.length; i += 2) {
+    try { orders.push(JSON.parse(raw[i + 1])); } catch(e) {}
+  }
+  return orders;
+}
+
+async function upstashGetOrder(no) {
+  const val = await upstashCmd("HGET", "baotong_orders", no);
+  return val ? JSON.parse(val) : null;
+}
+
+async function upstashSetOrder(no, order) {
+  await upstashCmd("HSET", "baotong_orders", no, JSON.stringify(order));
+}
+
+async function upstashDelOrder(no) {
+  await upstashCmd("HDEL", "baotong_orders", no);
+}
+
+// ===== 存储选择 =====
 async function getStore() {
+  // 优先 Upstash
+  if (UPSTASH_REST_URL && UPSTASH_REST_TOKEN) {
+    try {
+      await initUpstash();
+      return { type: "upstash" };
+    } catch (e) { console.error("Upstash init:", e.message); }
+  }
+  // 其次 Vercel KV
   if (process.env.KV_URL && process.env.KV_TOKEN) {
     try {
       const { createClient } = await import("@vercel/kv");
@@ -68,6 +129,7 @@ async function getStore() {
       return { type: "kv", client: kv };
     } catch (e) { console.error("KV init:", e.message); }
   }
+  // 后备：内存
   if (!memoryStore) memoryStore = new Map(Object.entries(SEED_DATA));
   return { type: "memory", client: memoryStore };
 }
@@ -89,23 +151,21 @@ export default async function handler(req, res) {
         // 管理后台：列出所有订单
         const key = req.query.key || "";
         if (!key || key !== process.env.ADMIN_KEY) return res.status(401).json({ error: "未授权" });
-        const orders = [];
-        if (store.type === "kv") {
+        let orders = [];
+        if (store.type === "upstash") orders = await upstashGetOrders();
+        else if (store.type === "kv") {
           const all = await store.client.hgetall("orders");
           if (all) Object.values(all).forEach(o => orders.push(o));
-        } else {
-          store.client.forEach(o => orders.push(o));
-        }
+        } else store.client.forEach(o => orders.push(o));
         return res.json({ count: orders.length, orders });
       }
 
-      let order = store.type === "kv"
-        ? await store.client.hget("orders", no)
-        : store.client.get(no);
+      let order = null;
+      if (store.type === "upstash") order = await upstashGetOrder(no);
+      else if (store.type === "kv") order = await store.client.hget("orders", no);
+      else order = store.client.get(no);
 
       if (!order) return res.status(404).json({ found: false, message: "未找到该订单" });
-
-      // 直接返回本地数据（无外部API调用）
       return res.json({ found: true, ...order });
     }
 
@@ -127,7 +187,8 @@ export default async function handler(req, res) {
         updatedAt: new Date().toISOString()
       };
 
-      if (store.type === "kv") await store.client.hset("orders", { [orderNo]: order });
+      if (store.type === "upstash") await upstashSetOrder(orderNo, order);
+      else if (store.type === "kv") await store.client.hset("orders", { [orderNo]: order });
       else store.client.set(orderNo, order);
 
       return res.json({ success: true, order });
@@ -139,8 +200,11 @@ export default async function handler(req, res) {
       if (!key || key !== process.env.ADMIN_KEY) return res.status(401).json({ error: "未授权" });
       const no = (req.query.no || "").toString().trim().toUpperCase();
       if (!no) return res.status(400).json({ error: "请提供订单号" });
-      if (store.type === "kv") await store.client.hdel("orders", no);
+
+      if (store.type === "upstash") await upstashDelOrder(no);
+      else if (store.type === "kv") await store.client.hdel("orders", no);
       else store.client.delete(no);
+
       return res.json({ success: true, message: "已删除" });
     }
 

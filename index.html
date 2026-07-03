@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -119,16 +119,14 @@
             font-weight: 600;
         }
         .nav-links a.active.nav-cta {
-            background: var(--secondary) !important;
+            background: var(--primary) !important;
             color: white !important;
         }
 
         .nav-cta {
-            background: var(--primary);
-            color: white !important;
             padding: 0.6rem 1.5rem;
             border-radius: 6px;
-            transition: background 0.3s !important;
+            transition: all 0.3s;
         }
 
         .nav-cta:hover {
@@ -1675,7 +1673,7 @@
                     currentId = section.id;
                 }
             });
-            if (currentId) setActiveNav(currentId);
+            if (currentId && currentId !== "home") setActiveNav(currentId);
         }
 
         window.addEventListener("scroll", updateActiveOnScroll);

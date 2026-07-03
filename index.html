@@ -1,0 +1,1743 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝通国际 | 国际贸易·国际货运综合服务商 - Baotong International</title>
+    <meta name="description" content="宝通国际是专业的国际贸易·国际货运综合服务商，提供海运、空运、报关等全方位物流解决方案">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --secondary: #3182ce;
+            --accent: #ed8936;
+            --text-dark: #1a202c;
+            --text-gray: #4a5568;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-text .main {
+            font-size: 1.1rem;
+        }
+
+        .logo-text .sub {
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            transition: background 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-light) !important;
+        }
+
+        /* 语言切换按钮 */
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
+            padding: 2px;
+            gap: 0;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            color: var(--text-gray);
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            padding: 100px 5% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* 板块通用样式 */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(49, 130, 206, 0.1);
+            color: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* 关于我们 */
+        .about {
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            background: var(--primary);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .about-image img.bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image .map-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26,54,93,0.15) 0%, rgba(49,130,206,0.05) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .about-image .map-overlay .globe-badge {
+            background: rgba(255,255,255,0.95);
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .about-feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        /* 服务 */
+        .services {
+            background: var(--bg-light);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* 为什么选择我们 */
+        .why-us {
+            background: var(--white);
+        }
+
+        .why-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .why-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .why-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .why-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 联系方式 */
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-desc {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-text p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .contact-form h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.3);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-image {
+                max-width: 400px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-text .main {
+                font-size: 0.95rem;
+            }
+
+            .logo-text .sub {
+                font-size: 0.55rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+            }
+
+            .lang-switch {
+                padding: 1px;
+            }
+
+            .lang-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* ========== 订单查询 ========== */
+        .tracking { padding: 100px 5%; background: var(--bg-light); }
+        .tracking-container { max-width: 1200px; margin: 0 auto; }
+        .tracking-search {
+            background: var(--white); border-radius: 16px; padding: 50px 40px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08); text-align: center;
+            max-width: 600px; margin: 0 auto 40px;
+        }
+        .tracking-search-icon { font-size: 3rem; margin-bottom: 12px; }
+        .tracking-search h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 6px; }
+        .tracking-search p { color: var(--text-gray); margin-bottom: 22px; font-size: 0.95rem; }
+        .tracking-input-group { display: flex; gap: 10px; max-width: 450px; margin: 0 auto; }
+        .tracking-input-group input {
+            flex: 1; padding: 13px 18px; border: 2px solid #e2e8f0; border-radius: 10px;
+            font-size: 1rem; font-family: inherit; outline: none; transition: border-color 0.3s;
+        }
+        .tracking-input-group input:focus { border-color: var(--secondary); }
+        .tracking-search-btn {
+            padding: 13px 28px; background: var(--primary); color: white; border: none;
+            border-radius: 10px; font-size: 1rem; font-family: inherit; font-weight: 500;
+            cursor: pointer; transition: background 0.3s; white-space: nowrap;
+        }
+        .tracking-search-btn:hover { background: var(--primary-light); }
+        .tracking-error { color: #e53e3e; font-size: 0.9rem; margin-top: 12px; display: none; }
+        .tracking-hint { margin-top: 14px; font-size: 0.85rem; color: #a0aec0; }
+        .tracking-hint strong { color: var(--text-gray); cursor: pointer; transition: color 0.3s; }
+        .tracking-hint strong:hover { color: var(--secondary); }
+        .tracking-loading { text-align: center; padding: 40px; display: none; }
+        .tracking-loading-spinner {
+            width: 36px; height: 36px; border: 3px solid #e2e8f0;
+            border-top-color: var(--secondary); border-radius: 50%;
+            animation: tspin 0.7s linear infinite; margin: 0 auto 12px;
+        }
+        @keyframes tspin { to { transform: rotate(360deg); } }
+        .tracking-loading p { color: var(--text-gray); }
+        .tracking-result { display: none; }
+        .tracking-result-header {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px; background: var(--white);
+            border-radius: 16px 16px 0 0; padding: 28px 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .tracking-result-header h4 { font-size: 1.1rem; color: var(--text-dark); }
+        .tracking-result-header p { font-size: 0.9rem; color: var(--text-gray); margin-top: 4px; }
+        .tracking-badge { padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+        .badge-done { background: #f0fff4; color: #276749; }
+        .badge-transit { background: #ebf8ff; color: #2b6cb0; }
+        .badge-customs { background: #fffbeb; color: #d69e2e; }
+        .badge-other { background: #f7fafc; color: #4a5568; }
+        .tracking-timeline {
+            background: var(--white); padding: 10px 32px 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .tl-item { position: relative; padding: 18px 0 0 32px; }
+        .tl-item::before {
+            content: ""; position: absolute; left: 6px; top: 30px; bottom: 0;
+            width: 2px; background: #e2e8f0;
+        }
+        .tl-item:last-child::before { display: none; }
+        .tl-dot {
+            position: absolute; left: 0; top: 22px; width: 14px; height: 14px;
+            border-radius: 50%; background: #e2e8f0; border: 3px solid var(--white); z-index: 1;
+        }
+        .step-done .tl-dot { background: var(--secondary); box-shadow: 0 0 0 3px rgba(49,130,206,0.15); }
+        .step-now .tl-dot {
+            background: var(--secondary); width: 18px; height: 18px;
+            left: -2px; top: 20px; box-shadow: 0 0 0 4px rgba(49,130,206,0.25);
+        }
+        .tl-title { font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+        .step-now .tl-title { color: var(--secondary); }
+        .tl-time { font-size: 0.85rem; color: var(--text-gray); }
+        .tl-desc { font-size: 0.88rem; color: #718096; margin-top: 3px; }
+        .tracking-info {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px; background: var(--white); padding: 24px 32px 32px;
+            border-radius: 0 0 16px 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-top: 1px solid #f0f0f0;
+        }
+        .info-card { padding: 12px 14px; background: var(--bg-light); border-radius: 8px; }
+        .info-card label { display: block; font-size: 0.78rem; color: var(--text-gray); margin-bottom: 3px; }
+        .info-card span { font-weight: 600; color: var(--text-dark); font-size: 0.9rem; }
+        .tracking-empty { text-align: center; padding: 60px 20px; color: #a0aec0; }
+        .tracking-empty p { font-size: 1rem; }
+        @media (max-width: 768px) {
+            .tracking-search { padding: 30px 20px; }
+            .tracking-input-group { flex-direction: column; }
+            .tracking-result-header { padding: 20px; }
+            .tracking-timeline { padding: 10px 20px 24px; }
+            .tracking-info { padding: 20px; grid-template-columns: 1fr 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="宝通国际" class="logo-icon">
+                <div class="logo-text">
+                    <span class="main" data-i18n="logo.main">宝通国际</span>
+                    <span class="sub" data-i18n="logo.sub">国际贸易·国际货运综合服务商</span>
+                </div>
+            </a>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
+                    <li><a href="#services" data-i18n="nav.services">服务项目</a></li>
+                    <li><a href="#why-us" data-i18n="nav.why">为什么选择我们</a></li>
+                    <li><a href="#tracking" data-i18n="nav.tracking">订单查询</a></li>
+                    <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">联系我们</a></li>
+                </ul>
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="zh">中</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 data-i18n="hero.title">连接世界<br>畅通全球贸易</h1>
+                <p data-i18n="hero.desc">宝通国际是专业的国际贸易·国际货运综合服务商，致力于为您提供专业、高效、可靠的进出口贸易和物流解决方案。</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">免费咨询报价</a>
+                    <a href="#services" class="btn btn-secondary" data-i18n="hero.cta2">了解更多服务</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">18+</span>
+                            <span class="stat-label" data-i18n="hero.stat1">年行业经验</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label" data-i18n="hero.stat2">覆盖国家</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10K+</span>
+                            <span class="stat-label" data-i18n="hero.stat3">服务客户</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label" data-i18n="hero.stat4">准时交付</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="about-bg.png" alt="宝通国际全球业务" class="bg">
+                <div class="map-overlay">
+                    <div class="globe-badge">
+                        <span>🌍</span>
+                        <span data-i18n="about.badge">业务覆盖全球 50+ 国家和地区</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text">
+                <span class="section-tag" data-i18n="about.tag">关于我们</span>
+                <h3 data-i18n="about.title">值得信赖的全球贸易伙伴</h3>
+                <p data-i18n="about.p1">宝通国际是一家专业的国际贸易·国际货运综合服务商。公司总部位于广州，在全球主要贸易城市设有分支机构和代理网络。</p>
+                <p data-i18n="about.p2">我们拥有一支经验丰富的专业团队，能够为客户提供从货物出运到目的港交付的全流程物流服务。多年来，我们凭借优质的服务和良好的信誉，赢得了众多国内外客户的信赖与支持。</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <span class="about-feature-icon">✓</span>
+                        <span data-i18n="about.f1">专业资质认证</span>
+                    </div>
+                    <div class="about-feature">
+                        <span class="about-feature-icon">✓</span>
+                        <span data-i18n="about.f2">全球代理网络</span>
+                    </div>
+                    <div class="about-feature">
+                        <span class="about-feature-icon">✓</span>
+                        <span data-i18n="about.f3">一对一专属服务</span>
+                    </div>
+                    <div class="about-feature">
+                        <span class="about-feature-icon">✓</span>
+                        <span data-i18n="about.f4">全程物流追踪</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <span class="section-tag" data-i18n="services.tag">服务项目</span>
+            <h2 class="section-title" data-i18n="services.title">全方位物流解决方案</h2>
+            <p class="section-desc" data-i18n="services.desc">我们提供涵盖国际运输、报关报检、仓储配送等一站式物流服务，满足您的各种贸易需求</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🚢</div>
+                <h3 data-i18n="services.s1.title">国际海运</h3>
+                <p data-i18n="services.s1.desc">提供整柜（FCL）和拼箱（LCL）海运服务，覆盖全球主要港口。优势航线包括东南亚、欧洲、美洲、中东等地区。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✈️</div>
+                <h3 data-i18n="services.s2.title">国际空运</h3>
+                <p data-i18n="services.s2.desc">快速、安全的空运服务，适用于高价值或时效性强的货物。与多家航空公司建立长期合作关系，保障舱位。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚛</div>
+                <h3 data-i18n="services.s3.title">陆路运输</h3>
+                <p data-i18n="services.s3.desc">国内拖车、港口转关、边境运输等陆路物流服务，配合海空运完成门到门全程物流配送。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3 data-i18n="services.s4.title">报关报检</h3>
+                <p data-i18n="services.s4.desc">专业报关团队，熟悉各国进出口法规。为您办理进出口报关、报检、原产地证等单证服务。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏭</div>
+                <h3 data-i18n="services.s5.title">仓储配送</h3>
+                <p data-i18n="services.s5.desc">在主要港口和工业区设有仓库，提供货物仓储、分拣、打包及最后一公里配送服务。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔒</div>
+                <h3 data-i18n="services.s6.title">货物保险</h3>
+                <p data-i18n="services.s6.desc">与知名保险公司合作，为您的货物提供全面的运输保险方案，降低贸易风险。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 为什么选择我们 -->
+    <section class="why-us" id="why-us">
+        <div class="section-header">
+            <span class="section-tag" data-i18n="why.tag">核心优势</span>
+            <h2 class="section-title" data-i18n="why.title">为什么选择宝通国际</h2>
+            <p class="section-desc" data-i18n="why.desc">专业、高效、可靠 — 您的满意是我们不懈追求的目标</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3 data-i18n="why.w1.title">高效响应</h3>
+                <p data-i18n="why.w1.desc">24小时在线报价，专属客户经理一对一服务，响应速度快</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💰</div>
+                <h3 data-i18n="why.w2.title">价格优势</h3>
+                <p data-i18n="why.w2.desc">与多家船公司、航空公司长期合作，拿到最优运价</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🛡️</div>
+                <h3 data-i18n="why.w3.title">安全保障</h3>
+                <p data-i18n="why.w3.desc">货物全程追踪，专业包装建议，完善的保险保障体系</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">📍</div>
+                <h3 data-i18n="why.w4.title">网络覆盖</h3>
+                <p data-i18n="why.w4.desc">全球50多个国家设有代理点，提供本地化服务支持</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 订单查询 -->
+    <section class="tracking" id="tracking">
+        <div class="tracking-container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="tracking.tag">订单查询</span>
+                <h2 class="section-title" data-i18n="tracking.title">订单查询</h2>
+                <p class="section-desc" data-i18n="tracking.desc">输入宝通国际订单号，实时追踪您的货物运输状态</p>
+            </div>
+            <div class="tracking-search">
+                <div class="tracking-search-icon">📦</div>
+                <h3 data-i18n="tracking.search.title">查询您的订单</h3>
+                <p data-i18n="tracking.search.desc">请输入宝通国际为您编制的内部订单号</p>
+                <div class="tracking-input-group">
+                    <input type="text" id="orderInput" data-i18n="tracking.search.placeholder" placeholder="例如：BT20240701001" maxlength="20" autocomplete="off">
+                    <button class="tracking-search-btn" onclick="handleSearch()"><span data-i18n="tracking.search.btn">查询</span></button>
+                </div>
+                <div class="tracking-error" id="orderError" data-i18n="tracking.error">未找到该订单，请检查订单号是否正确</div>
+                <div class="tracking-hint">
+                    <span data-i18n="tracking.hint">演示订单号：</span>
+                    <strong onclick="fillOrderNo('BT20240701001')">BT20240701001</strong> · <strong onclick="fillOrderNo('BT20240615002')">BT20240615002</strong>
+                </div>
+            </div>
+
+            <div class="tracking-loading" id="orderLoading">
+                <div class="tracking-loading-spinner"></div>
+                <p data-i18n="tracking.loading">正在查询...</p>
+            </div>
+
+            <div class="tracking-result" id="orderResult">
+                <div class="tracking-result-header">
+                    <div>
+                        <h4 id="resultTitle">订单号：BT20240701001</h4>
+                        <p id="resultRoute">深圳港 → 洛杉矶港</p>
+                    </div>
+                    <span class="tracking-badge" id="resultBadge">运输中</span>
+                </div>
+                <div class="tracking-timeline" id="resultTimeline"></div>
+                <div class="tracking-info" id="resultInfo"></div>
+            </div>
+
+            <div class="tracking-empty" id="orderEmpty">
+                <p data-i18n="tracking.empty">📋 请输入订单号开始查询</p>
+            </div>
+        </div>
+    </section>
+
+<!-- 联系方式 -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <span class="section-tag" data-i18n="contact.tag">联系我们</span>
+            <h2 class="section-title" data-i18n="contact.title">开始您的全球贸易之旅</h2>
+            <p class="section-desc" data-i18n="contact.desc">无论您有任何物流需求，都欢迎联系我们获取免费报价和咨询服务</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 data-i18n="contact.info.title">联系方式</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">
+                        <h4 data-i18n="contact.addr.label">公司地址</h4>
+                        <p data-i18n="contact.addr.value">广东省广州市滨江中路广州海运大厦12楼</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text">
+                        <h4 data-i18n="contact.phone.label">联系电话</h4>
+                        <p>+86 19865887716</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">
+                        <h4 data-i18n="contact.email.label">电子邮箱</h4>
+                        <p>karen@baotongtrade.cn</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-text">
+                        <h4 data-i18n="contact.whatsapp.label">WhatsApp</h4>
+                        <p>+86 13006130726</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div class="contact-text">
+                        <h4 data-i18n="contact.hours.label">工作时间</h4>
+                        <p data-i18n="contact.hours.value">周一至周五 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 data-i18n="form.title">发送询价</h3>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form.name">您的姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" data-i18n="form.phone">联系电话</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="form.email">电子邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service" data-i18n="form.service">服务类型</label>
+                        <input type="text" id="service" name="service">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="form.message">您的需求</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-i18n="form.submit">提交咨询</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3 data-i18n="footer.brand">🚢 宝通国际 | 国际贸易·国际货运综合服务商</h3>
+                <p data-i18n="footer.brand.desc">专业国际贸易团队，为您的进出口业务保驾护航。</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="footer.quick">快速链接</h4>
+                <ul>
+                    <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
+                    <li><a href="#services" data-i18n="nav.services">服务项目</a></li>
+                    <li><a href="#why-us" data-i18n="why.tag">核心优势</a></li>
+                    <li><a href="#tracking" data-i18n="nav.tracking">订单查询</a></li>
+                    <li><a href="#contact" data-i18n="nav.contact">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="nav.services">服务项目</h4>
+                <ul>
+                    <li><a href="#services" data-i18n="services.s1.title">国际海运</a></li>
+                    <li><a href="#services" data-i18n="services.s2.title">国际空运</a></li>
+                    <li><a href="#services" data-i18n="services.s4.title">报关报检</a></li>
+                    <li><a href="#services" data-i18n="services.s5.title">仓储配送</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="contact.info.title">联系我们</h4>
+                <ul>
+                    <li>Tel: 198-6588-7716</li>
+                    <li>Email: karen@baotongtrade.cn</li>
+                    <li data-i18n="contact.addr.value">广州市滨江中路</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer.copyright">&copy; 2024 宝通国际 版权所有 | 粤ICP备XXXXXXXX号</p>
+        </div>
+    </footer>
+
+    <script>
+        // ====== 中英文翻译字典 ======
+        const translations = {
+            zh: {
+                'logo.main': '宝通国际',
+                'logo.sub': '国际贸易·国际货运综合服务商',
+                'nav.about': '关于我们',
+                'nav.services': '服务项目',
+                'nav.why': '为什么选择我们',
+                'nav.tracking': '订单查询',
+                'nav.tracking': '订单查询',
+                'nav.tracking': '订单查询',
+                'nav.contact': '联系我们',
+                'hero.title': '连接世界<br>畅通全球贸易',
+                'hero.desc': '宝通国际是专业的国际贸易·国际货运综合服务商，致力于为您提供专业、高效、可靠的进出口贸易和物流解决方案。',
+                'hero.cta1': '免费咨询报价',
+                'hero.cta2': '了解更多服务',
+                'hero.stat1': '年行业经验',
+                'hero.stat2': '覆盖国家',
+                'hero.stat3': '服务客户',
+                'hero.stat4': '准时交付',
+                'about.tag': '关于我们',
+                'about.title': '值得信赖的全球贸易伙伴',
+                'about.p1': '宝通国际是一家专业的国际贸易·国际货运综合服务商。公司总部位于广州，在全球主要贸易城市设有分支机构和代理网络。',
+                'about.p2': '我们拥有一支经验丰富的专业团队，能够为客户提供从货物出运到目的港交付的全流程物流服务。多年来，我们凭借优质的服务和良好的信誉，赢得了众多国内外客户的信赖与支持。',
+                'about.f1': '专业资质认证',
+                'about.f2': '全球代理网络',
+                'about.f3': '一对一专属服务',
+                'about.f4': '全程物流追踪',
+                'about.badge': '业务覆盖全球 50+ 国家和地区',
+                'services.tag': '服务项目',
+                'services.title': '全方位物流解决方案',
+                'services.desc': '我们提供涵盖国际运输、报关报检、仓储配送等一站式物流服务，满足您的各种贸易需求',
+                'services.s1.title': '国际海运',
+                'services.s1.desc': '提供整柜（FCL）和拼箱（LCL）海运服务，覆盖全球主要港口。优势航线包括东南亚、欧洲、美洲、中东等地区。',
+                'services.s2.title': '国际空运',
+                'services.s2.desc': '快速、安全的空运服务，适用于高价值或时效性强的货物。与多家航空公司建立长期合作关系，保障舱位。',
+                'services.s3.title': '陆路运输',
+                'services.s3.desc': '国内拖车、港口转关、边境运输等陆路物流服务，配合海空运完成门到门全程物流配送。',
+                'services.s4.title': '报关报检',
+                'services.s4.desc': '专业报关团队，熟悉各国进出口法规。为您办理进出口报关、报检、原产地证等单证服务。',
+                'services.s5.title': '仓储配送',
+                'services.s5.desc': '在主要港口和工业区设有仓库，提供货物仓储、分拣、打包及最后一公里配送服务。',
+                'services.s6.title': '货物保险',
+                'services.s6.desc': '与知名保险公司合作，为您的货物提供全面的运输保险方案，降低贸易风险。',
+                'why.tag': '核心优势',
+                'why.title': '为什么选择宝通国际',
+                'why.desc': '专业、高效、可靠 — 您的满意是我们不懈追求的目标',
+                'why.w1.title': '高效响应',
+                'why.w1.desc': '24小时在线报价，专属客户经理一对一服务，响应速度快',
+                'why.w2.title': '价格优势',
+                'why.w2.desc': '与多家船公司、航空公司长期合作，拿到最优运价',
+                'why.w3.title': '安全保障',
+                'why.w3.desc': '货物全程追踪，专业包装建议，完善的保险保障体系',
+                'why.w4.title': '网络覆盖',
+                'why.w4.desc': '全球50多个国家设有代理点，提供本地化服务支持',
+                'contact.tag': '联系我们',
+                'contact.title': '开始您的全球贸易之旅',
+                'contact.desc': '无论您有任何物流需求，都欢迎联系我们获取免费报价和咨询服务',
+                'contact.info.title': '联系方式',
+                'contact.addr.label': '公司地址',
+                'contact.addr.value': '广东省广州市滨江中路广州海运大厦12楼',
+                'contact.phone.label': '联系电话',
+                'contact.email.label': '电子邮箱',
+                'contact.whatsapp.label': 'WhatsApp',
+                'contact.hours.label': '工作时间',
+                'contact.hours.value': '周一至周五 9:00 - 18:00',
+                "tracking.tag": "订单查询",
+                "tracking.title": "订单查询",
+                "tracking.desc": "输入宝通国际订单号，实时追踪您的货物运输状态",
+                "tracking.search.title": "查询您的订单",
+                "tracking.search.desc": "请输入宝通国际为您编制的内部订单号",
+                "tracking.search.placeholder": "例如：BT20240701001",
+                "tracking.search.btn": "查询",
+                "tracking.hint": "演示订单号：",
+                "tracking.error": "未找到该订单，请检查订单号是否正确",
+                "tracking.loading": "正在查询...",
+                "tracking.empty": "请输入订单号开始查询",
+                "tracking.tag": "订单查询",
+                "tracking.title": "订单查询",
+                "tracking.desc": "输入宝通国际订单号，实时追踪您的货物运输状态",
+                "tracking.search.title": "查询您的订单",
+                "tracking.search.desc": "请输入宝通国际为您编制的内部订单号",
+                "tracking.search.placeholder": "例如：BT20240701001",
+                "tracking.search.btn": "查询",
+                "tracking.hint": "演示订单号：",
+                "tracking.error": "未找到该订单，请检查订单号是否正确",
+                "tracking.loading": "正在查询...",
+                "tracking.empty": "请输入订单号开始查询",
+                "tracking.tag": "订单查询",
+                "tracking.title": "订单查询",
+                "tracking.desc": "输入宝通国际订单号，实时追踪您的货物运输状态",
+                "tracking.search.title": "查询您的订单",
+                "tracking.search.desc": "请输入宝通国际为您编制的内部订单号",
+                "tracking.search.placeholder": "例如：BT20240701001",
+                "tracking.search.btn": "查询",
+                "tracking.hint": "演示订单号：",
+                "tracking.error": "未找到该订单，请检查订单号是否正确",
+                "tracking.loading": "正在查询...",
+                "tracking.empty": "请输入订单号开始查询",
+                'form.title': '发送询价',
+                'form.name': '您的姓名',
+                'form.phone': '联系电话',
+                'form.email': '电子邮箱',
+                'form.service': '服务类型',
+                'form.message': '您的需求',
+                'form.submit': '提交咨询',
+                'footer.brand': '🚢 宝通国际 | 国际贸易·国际货运综合服务商',
+                'footer.brand.desc': '专业国际贸易团队，为您的进出口业务保驾护航。',
+                'footer.quick': '快速链接',
+                'footer.copyright': '&copy; 2024 宝通国际 版权所有 | 粤ICP备XXXXXXXX号',
+                'form.alert': '感谢您的咨询！我们的工作人员将尽快与您联系。',
+                'placeholder.name': '请输入姓名',
+                'placeholder.phone': '请输入电话',
+                'placeholder.email': '请输入邮箱',
+                'placeholder.service': '如：海运整柜、空运等',
+                'placeholder.message': '请描述您的物流需求...'
+            },
+            en: {
+                'logo.main': 'Baotong',
+                'logo.sub': 'International Trade & Freight',
+                'nav.about': 'About Us',
+                'nav.services': 'Services',
+                'nav.why': 'Why Choose Us',
+                'nav.tracking': 'Order Tracking',
+                'nav.tracking': 'Order Tracking',
+                'nav.tracking': 'Order Tracking',
+                'nav.contact': 'Contact',
+                'hero.title': 'Connecting the World<br>Empowering Global Trade',
+                'hero.desc': 'Baotong International is a professional international trade and freight service provider, dedicated to offering professional, efficient, and reliable import/export trade and logistics solutions.',
+                'hero.cta1': 'Get Free Quote',
+                'hero.cta2': 'Explore Services',
+                'hero.stat1': 'Years Experience',
+                'hero.stat2': 'Countries',
+                'hero.stat3': 'Clients Served',
+                'hero.stat4': 'On-Time Delivery',
+                'about.tag': 'About Us',
+                'about.title': 'Your Trusted Global Trade Partner',
+                'about.p1': 'Baotong International is a professional international trade and freight service provider. Headquartered in Guangzhou, we have branches and agency networks in major trading cities worldwide.',
+                'about.p2': 'We have an experienced professional team capable of providing end-to-end logistics services from cargo dispatch to port of destination delivery. Over the years, we have earned the trust and support of numerous domestic and international clients through quality service and excellent reputation.',
+                'about.f1': 'Professional Certifications',
+                'about.f2': 'Global Agency Network',
+                'about.f3': 'Dedicated 1-on-1 Service',
+                'about.f4': 'Full-Cycle Tracking',
+                'about.badge': 'Covering 50+ Countries Worldwide',
+                'services.tag': 'Our Services',
+                'services.title': 'Comprehensive Logistics Solutions',
+                'services.desc': 'We offer one-stop logistics services covering international transport, customs clearance, warehousing and distribution to meet all your trade needs',
+                'services.s1.title': 'Ocean Freight',
+                'services.s1.desc': 'FCL and LCL shipping services covering major global ports. Key routes include Southeast Asia, Europe, Americas, and the Middle East.',
+                'services.s2.title': 'Air Freight',
+                'services.s2.desc': 'Fast and secure air freight for high-value or time-sensitive cargo. Long-term partnerships with multiple airlines ensure capacity.',
+                'services.s3.title': 'Land Transport',
+                'services.s3.desc': 'Domestic trucking, port transit, and cross-border transport services, completing door-to-door delivery with sea and air freight.',
+                'services.s4.title': 'Customs Clearance',
+                'services.s4.desc': 'Professional customs team familiar with import/export regulations worldwide. We handle customs declaration, inspection, and certificates of origin.',
+                'services.s5.title': 'Warehousing & Distribution',
+                'services.s5.desc': 'Warehouses at major ports and industrial zones, offering storage, sorting, packing, and last-mile delivery services.',
+                'services.s6.title': 'Cargo Insurance',
+                'services.s6.desc': 'Partnering with leading insurers to provide comprehensive transport insurance solutions, reducing your trade risks.',
+                'why.tag': 'Core Advantages',
+                'why.title': 'Why Choose Baotong',
+                'why.desc': 'Professional, efficient, reliable — your satisfaction is our relentless pursuit',
+                'why.w1.title': 'Fast Response',
+                'why.w1.desc': '24/7 online quotes, dedicated account manager, rapid response',
+                'why.w2.title': 'Competitive Pricing',
+                'why.w2.desc': 'Long-term partnerships with shipping lines and airlines for the best rates',
+                'why.w3.title': 'Safety Guarantee',
+                'why.w3.desc': 'Full cargo tracking, professional packaging advice, comprehensive insurance system',
+                'why.w4.title': 'Global Coverage',
+                'why.w4.desc': 'Agency offices in 50+ countries, providing localized service support',
+                'contact.tag': 'Contact Us',
+                'contact.title': 'Start Your Global Trade Journey',
+                'contact.desc': 'Whatever your logistics needs, contact us for a free quote and consultation',
+                'contact.info.title': 'Contact Information',
+                'contact.addr.label': 'Address',
+                'contact.addr.value': '12F, Guangzhou Shipping Building, Binjiang Middle Road, Guangzhou, Guangdong',
+                'contact.phone.label': 'Phone',
+                'contact.email.label': 'Email',
+                'contact.whatsapp.label': 'WhatsApp',
+                'contact.hours.label': 'Business Hours',
+                'contact.hours.value': 'Mon - Fri 9:00 - 18:00',
+                "tracking.tag": "Order Tracking",
+                "tracking.title": "Order Tracking",
+                "tracking.desc": "Enter your Baotong order number to track your shipment in real time",
+                "tracking.search.title": "Track Your Order",
+                "tracking.search.desc": "Enter your Baotong internal order number",
+                "tracking.search.placeholder": "e.g. BT20240701001",
+                "tracking.search.btn": "Search",
+                "tracking.hint": "Demo orders: ",
+                "tracking.error": "Order not found, please check the order number",
+                "tracking.loading": "Searching...",
+                "tracking.empty": "Enter an order number to start tracking",
+                "tracking.tag": "Order Tracking",
+                "tracking.title": "Order Tracking",
+                "tracking.desc": "Enter your Baotong order number to track your shipment in real time",
+                "tracking.search.title": "Track Your Order",
+                "tracking.search.desc": "Enter your Baotong internal order number",
+                "tracking.search.placeholder": "e.g. BT20240701001",
+                "tracking.search.btn": "Search",
+                "tracking.hint": "Demo orders: ",
+                "tracking.error": "Order not found, please check the order number",
+                "tracking.loading": "Searching...",
+                "tracking.empty": "Enter an order number to start tracking",
+                "tracking.tag": "Order Tracking",
+                "tracking.title": "Order Tracking",
+                "tracking.desc": "Enter your Baotong order number to track your shipment in real time",
+                "tracking.search.title": "Track Your Order",
+                "tracking.search.desc": "Enter your Baotong internal order number",
+                "tracking.search.placeholder": "e.g. BT20240701001",
+                "tracking.search.btn": "Search",
+                "tracking.hint": "Demo orders: ",
+                "tracking.error": "Order not found, please check the order number",
+                "tracking.loading": "Searching...",
+                "tracking.empty": "Enter an order number to start tracking",
+                'form.title': 'Send Inquiry',
+                'form.name': 'Your Name',
+                'form.phone': 'Phone Number',
+                'form.email': 'Email Address',
+                'form.service': 'Service Type',
+                'form.message': 'Your Requirements',
+                'form.submit': 'Submit Inquiry',
+                'footer.brand': '🚢 Baotong International | Trade & Freight',
+                'footer.brand.desc': 'Professional international trade team, safeguarding your import/export business.',
+                'footer.quick': 'Quick Links',
+                'footer.copyright': '&copy; 2024 Baotong International. All rights reserved.',
+                'form.alert': 'Thank you for your inquiry! Our team will contact you shortly.',
+                'placeholder.name': 'Enter your name',
+                'placeholder.phone': 'Enter your phone',
+                'placeholder.email': 'Enter your email',
+                'placeholder.service': 'e.g. FCL, Air freight, etc.',
+                'placeholder.message': 'Describe your logistics needs...'
+            }
+        };
+
+        // ====== 语言切换逻辑 ======
+        let currentLang = 'zh';
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            const dict = translations[lang];
+
+            // 更新所有带 data-i18n 的元素
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key] !== undefined) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            // 更新 placeholder
+            document.getElementById('name').placeholder = dict['placeholder.name'];
+            document.getElementById('phone').placeholder = dict['placeholder.phone'];
+            document.getElementById('email').placeholder = dict['placeholder.email'];
+            document.getElementById('service').placeholder = dict['placeholder.service'];
+            document.getElementById('message').placeholder = dict['placeholder.message'];
+
+            // 更新 html lang 属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 更新按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // 保存语言偏好
+            localStorage.setItem('lang', lang);
+        }
+
+        // 绑定切换按钮
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyLanguage(btn.dataset.lang);
+            });
+        });
+
+        // 页面加载时恢复语言偏好
+        const savedLang = localStorage.getItem('lang') || 'zh';
+        applyLanguage(savedLang);
+
+        // ====== 表单提交处理 ======
+        // 提交到 Formspree（免费表单服务，转发到 Lawsonsun@baotongtrade.cn）
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLang === 'zh' ? '发送中...' : 'Sending...';
+
+            // 发送到 Formspree（转发到 lawsonsun@baotongtrade.cn）
+            fetch('https://formspree.io/f/mlgyozjw', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(translations[currentLang]['form.alert']);
+                    this.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                // 降级方案：打开邮件客户端
+                const subject = encodeURIComponent(currentLang === 'zh' ? '网站询价 - ' + data.name : 'Website Inquiry - ' + data.name);
+                const body = encodeURIComponent(
+                    (currentLang === 'zh' ? '姓名' : 'Name') + ': ' + data.name + '\n' +
+                    (currentLang === 'zh' ? '电话' : 'Phone') + ': ' + data.phone + '\n' +
+                    (currentLang === 'zh' ? '邮箱' : 'Email') + ': ' + data.email + '\n' +
+                    (currentLang === 'zh' ? '服务类型' : 'Service') + ': ' + (data.service || '') + '\n' +
+                    (currentLang === 'zh' ? '需求' : 'Message') + ': ' + data.message
+                );
+                window.location.href = 'mailto:lawsonsun@baotongtrade.cn?subject=' + subject + '&body=' + body;
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        });
+
+        // ====== 平滑滚动 ======
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ====== 导航栏滚动效果 ======
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // ========== 宝通国际订单查询（后端 API） ==========
+        const FALLBACK_ORDERS = {
+            "BT20240701001": { no: "BT20240701001", type: "海运整柜 (FCL)", route: "深圳港 → 洛杉矶港", status: "in-transit", statusText: "运输中", eta: "2026-07-20", vessel: "CMA CGM JACQUES SAADE / V.123E", container: "CCLU1234567", client: "深圳华贸进出口有限公司", steps: [
+                { title: "已订舱", time: "2026-07-01 10:30", desc: "订舱确认，装载 40HQ 集装箱", done: true },
+                { title: "已装柜", time: "2026-07-03 14:00", desc: "货物已入仓并完成装箱", done: true },
+                { title: "已报关", time: "2026-07-04 09:15", desc: "出口报关放行", done: true },
+                { title: "已起运", time: "2026-07-06 08:00", desc: "船舶已离港，航程约 14 天", done: true },
+                { title: "运输中", time: "2026-07-10 12:00", desc: "正横跨太平洋，预计7月20日抵达", done: true, current: true },
+                { title: "清关中", time: "预计 2026-07-20", desc: "抵达目的港后进口清关", done: false },
+                { title: "已签收", time: "预计 2026-07-25", desc: "提柜配送至目的地", done: false }
+            ]},
+            "BT20240615002": { no: "BT20240615002", type: "国际空运", route: "广州白云机场 → 纽约肯尼迪机场", status: "delivered", statusText: "已签收", eta: "2026-06-22", vessel: "CZ327 / MAWB: 784-12345678", container: "N/A", client: "广州鑫达电子科技有限公司", steps: [
+                { title: "已订舱", time: "2026-06-15 09:00", desc: "空运仓位已确认", done: true },
+                { title: "已入仓", time: "2026-06-16 11:30", desc: "货物已送达机场仓库", done: true },
+                { title: "已报关", time: "2026-06-17 10:00", desc: "出口报关放行", done: true },
+                { title: "已起飞", time: "2026-06-18 02:00", desc: "航班准时起飞", done: true },
+                { title: "已到达", time: "2026-06-18 14:00", desc: "抵达纽约肯尼迪机场", done: true },
+                { title: "清关完成", time: "2026-06-19 16:30", desc: "进口清关完成，放行", done: true },
+                { title: "已签收", time: "2026-06-22 10:00", desc: "货物已签收，派送完成", done: true, current: true }
+            ]}
+        };
+
+        async function handleSearch() {
+            var input = document.getElementById("orderInput");
+            var no = input.value.trim().toUpperCase();
+            var errorEl = document.getElementById("orderError");
+            var loadingEl = document.getElementById("orderLoading");
+            var resultEl = document.getElementById("orderResult");
+            errorEl.style.display = "none";
+            resultEl.style.display = "none";
+            if (!no) {
+                errorEl.textContent = "请输入订单号";
+                errorEl.style.display = "block";
+                return;
+            }
+            loadingEl.style.display = "block";
+            try {
+                var res = await fetch("/api/track?no=" + encodeURIComponent(no));
+                if (res.ok) {
+                    var data = await res.json();
+                    loadingEl.style.display = "none";
+                    if (data.found) { showOrder(data); return; }
+                }
+            } catch(e) {}
+            setTimeout(function() {
+                loadingEl.style.display = "none";
+                var fb = FALLBACK_ORDERS[no];
+                if (fb) { showOrder(fb); return; }
+                errorEl.textContent = "未找到订单 " + no;
+                errorEl.style.display = "block";
+            }, 300);
+        }
+
+        function showOrder(order) {
+            var badge = document.getElementById("resultBadge");
+
+            // 17Track 数据源标识
+            if (order.trackingSource === "17Track") {
+                var liveUrl = order.liveUrl || "";
+                var sourceHtml = "<div style=\\"text-align:center;margin-bottom:12px;padding:10px;background:#ebf8ff;border-radius:8px;font-size:0.82rem;color:#2b6cb0\\">📡 实时物流数据由 17Track 提供";
+                if (liveUrl) sourceHtml += " · <a href=\\"" + liveUrl + "\\" target=\\"_blank\\" rel=\\"noopener\\" style=\\"color:#2b6cb0;font-weight:500;text-decoration:underline\\">在 17Track 查看完整轨迹 →</a>";
+                sourceHtml += "</div>";
+                var existingSource = document.getElementById("trackingSourceTag");
+                if (!existingSource) {
+                    var div = document.createElement("div");
+                    div.id = "trackingSourceTag";
+                    div.innerHTML = sourceHtml;
+                    document.getElementById("orderResult").insertBefore(div, document.getElementById("orderResult").firstChild);
+                }
+            }
+            document.getElementById("resultTitle").textContent = "订单号：" + (order.no || "") + (order.client ? " | " + order.client : "");
+            document.getElementById("resultRoute").textContent = (order.type || "") + (order.route ? " · " + order.route : "") + (order.eta ? " | 预计 " + order.eta : "");
+            badge.textContent = order.statusText || "未知";
+            badge.className = "tracking-badge";
+            if (order.status === "delivered") badge.classList.add("badge-done");
+            else if (order.status === "in-transit") badge.classList.add("badge-transit");
+            else if (order.status === "customs") badge.classList.add("badge-customs");
+            else badge.classList.add("badge-other");
+            var tl = "";
+            if (order.steps) {
+                for (var i = 0; i < order.steps.length; i++) {
+                    var s = order.steps[i];
+                    var cls = s.done ? "step-done" : "";
+                    if (s.current) cls += " step-now";
+                    tl += "<div class=\"tl-item " + cls + "\"><div class=\"tl-dot\"></div><div class=\"tl-body\"><div class=\"tl-title\">" + (s.title||"") + "</div><div class=\"tl-time\">" + (s.time||"") + "</div>" + (s.desc ? "<div class=\"tl-desc\">" + s.desc + "</div>" : "") + "</div></div>";
+                }
+            }
+            document.getElementById("resultTimeline").innerHTML = tl;
+            var fields = [
+                ["订单编号", order.no], ["客户名称", order.client],
+                ["运输方式", order.type], ["运输路线", order.route],
+                ["船名/航班", order.vessel], ["柜号/运单号", order.container],
+                ["预计到达", order.eta], ["当前状态", order.statusText]
+            ];
+            var cards = "";
+            for (var i = 0; i < fields.length; i++) {
+                if (fields[i][1]) cards += "<div class=\"info-card\"><label>" + fields[i][0] + "</label><span>" + fields[i][1] + "</span></div>";
+            }
+            document.getElementById("resultInfo").innerHTML = cards;
+            document.getElementById("orderResult").style.display = "block";
+            document.getElementById("orderResult").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function fillOrderNo(no) {
+            document.getElementById("orderInput").value = no;
+            handleSearch();
+        }
+
+        document.getElementById("orderInput").addEventListener("keydown", function(e) {
+            if (e.key === "Enter") handleSearch();
+        });
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝通国际 - 订单后台管理</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f2f5; color: #1a202c;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+        /* Login */
+        .login-box {
+            max-width: 400px; margin: 120px auto; background: white;
+            padding: 40px; border-radius: 16px; box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .login-box h2 { color: #1a365d; margin-bottom: 8px; }
+        .login-box p { color: #718096; font-size: 0.9rem; margin-bottom: 24px; }
+        .login-box input {
+            width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px;
+            font-size: 1rem; margin-bottom: 16px; outline: none;
+        }
+        .login-box input:focus { border-color: #3182ce; }
+        .login-box button {
+            width: 100%; padding: 12px; background: #1a365d; color: white;
+            border: none; border-radius: 8px; font-size: 1rem; cursor: pointer;
+        }
+        .login-box button:hover { background: #2c5282; }
+        .login-error { color: #e53e3e; margin-top: 12px; display: none; font-size: 0.9rem; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a365d, #2c5282);
+            color: white; padding: 20px 28px; border-radius: 14px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 24px;
+        }
+        .header h1 { font-size: 1.3rem; }
+        .header .sub { font-size: 0.8rem; opacity: 0.7; font-weight: 400; margin-left: 10px; }
+        .header button {
+            background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+        }
+        .header button:hover { background: rgba(255,255,255,0.25); }
+
+        /* Stats */
+        .stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px; margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white; padding: 16px 20px; border-radius: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .stat-card .num { font-size: 1.8rem; font-weight: 700; color: #1a365d; }
+        .stat-card .label { font-size: 0.82rem; color: #718096; }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+            align-items: center;
+        }
+        .toolbar input {
+            flex: 1; min-width: 200px; padding: 10px 16px; border: 2px solid #e2e8f0;
+            border-radius: 8px; font-size: 0.95rem; outline: none;
+        }
+        .toolbar input:focus { border-color: #3182ce; }
+        .btn {
+            padding: 10px 22px; border: none; border-radius: 8px;
+            font-size: 0.9rem; cursor: pointer; font-weight: 500;
+        }
+        .btn-primary { background: #1a365d; color: white; }
+        .btn-primary:hover { background: #2c5282; }
+        .btn-danger { background: #e53e3e; color: white; }
+        .btn-danger:hover { background: #c53030; }
+        .btn-sm { padding: 6px 14px; font-size: 0.82rem; }
+
+        /* Table */
+        .table-wrap {
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            background: #f7fafc; padding: 12px 16px; text-align: left;
+            font-weight: 600; font-size: 0.82rem; color: #4a5568;
+            border-bottom: 2px solid #e2e8f0; white-space: nowrap;
+        }
+        td {
+            padding: 11px 16px; border-bottom: 1px solid #f0f0f0;
+            font-size: 0.88rem;
+        }
+        tr:hover td { background: #f7fafc; }
+        .badge {
+            padding: 3px 12px; border-radius: 12px; font-size: 0.78rem; font-weight: 500;
+            display: inline-block;
+        }
+        .badge-in-transit { background: #ebf8ff; color: #2b6cb0; }
+        .badge-delivered { background: #f0fff4; color: #276749; }
+        .badge-pending { background: #fffbeb; color: #d69e2e; }
+        .badge-customs { background: #f3e8ff; color: #6b46c1; }
+        .badge-booking { background: #e6fffa; color: #285e61; }
+        .actions { display: flex; gap: 6px; }
+        .actions button { padding: 4px 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 1000; justify-content: center; align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: white; border-radius: 16px; padding: 30px;
+            width: 92%; max-width: 720px; max-height: 90vh; overflow-y: auto;
+        }
+        .modal h2 { margin-bottom: 18px; color: #1a365d; }
+        .modal .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .modal .field { margin-bottom: 12px; }
+        .modal .field label { display: block; font-weight: 500; font-size: 0.82rem; color: #4a5568; margin-bottom: 3px; }
+        .modal .field input, .modal .field select, .modal .field textarea {
+            width: 100%; padding: 8px 12px; border: 2px solid #e2e8f0;
+            border-radius: 6px; font-size: 0.9rem; font-family: inherit;
+        }
+        .modal .field input:focus, .modal .field select:focus { border-color: #3182ce; outline: none; }
+        .modal .actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .modal .actions button { padding: 10px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 30px; right: 30px;
+            padding: 14px 24px; border-radius: 10px; color: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 2000;
+            transform: translateY(80px); opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.ok { background: #276749; }
+        .toast.err { background: #e53e3e; }
+
+        .empty-state { text-align: center; padding: 50px; color: #a0aec0; }
+
+        @media (max-width: 768px) {
+            .modal .row { grid-template-columns: 1fr; }
+            .toolbar { flex-direction: column; }
+            .toolbar input { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login -->
+        <div class="login-box" id="loginBox">
+            <h2>🔐 宝通国际</h2>
+            <p>订单后台管理系统</p>
+            <input type="password" id="keyInput" placeholder="管理员密钥" onkeydown="if(event.key==='Enter') login()">
+            <button onclick="login()">登录</button>
+            <div class="login-error" id="loginError">密钥错误或服务器连接失败</div>
+        </div>
+
+        <!-- Main -->
+        <div id="mainPanel" style="display:none">
+            <div class="header">
+                <div>
+                    <h1>📋 订单管理 <span class="sub" id="envBadge"></span></h1>
+                </div>
+                <button onclick="logout()">退出</button>
+            </div>
+
+            <div class="stats" id="statsRow"></div>
+
+            <div class="toolbar">
+                <input type="text" id="searchInput" placeholder="🔍 搜索订单号 / 客户名..." oninput="renderTable()">
+                <button class="btn btn-primary" onclick="openModal()">＋ 新建订单</button>
+                <button class="btn btn-primary" onclick="loadOrders()" style="background:#3182ce">🔄 刷新</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>客户</th>
+                            <th>运输方式</th>
+                            <th>路线</th>
+                            <th>状态</th>
+                            <th>预计到达</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr><td colspan="7" class="empty-state">加载中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle">新建订单</h2>
+            <input type="hidden" id="editNo">
+            <div class="row">
+                <div class="field"><label>订单号 *</label><input id="fNo" placeholder="如 BT20240701001"></div>
+                <div class="field"><label>客户名称</label><input id="fClient" placeholder="客户公司"></div>
+                <div class="field"><label>运输方式</label>
+                    <select id="fType">
+                        <option>海运整柜 (FCL)</option><option>海运拼柜 (LCL)</option>
+                        <option>国际空运</option><option>快递</option><option>铁运</option><option>多式联运</option>
+                    </select>
+                </div>
+                <div class="field"><label>状态</label>
+                    <select id="fStatus">
+                        <option value="pending">待处理</option>
+                        <option value="booking">已订舱</option>
+                        <option value="in-transit">运输中</option>
+                        <option value="customs">清关中</option>
+                        <option value="delivered">已签收</option>
+                    </select>
+                </div>
+                <div class="field"><label>路线</label><input id="fRoute" placeholder="深圳港 → 洛杉矶港"></div>
+                <div class="field"><label>预计到达</label><input id="fEta" placeholder="2026-08-01"></div>
+                <div class="field"><label>船名/航班</label><input id="fVessel" placeholder="船名或航班号"></div>
+                <div class="field"><label>柜号/运单号</label><input id="fContainer" placeholder="集装箱号"></div>
+            </div>
+            <div class="field"><label>物流节点（每行一条：标题 | 时间 | 描述）</label>
+                <textarea id="fSteps" rows="4" placeholder="已订舱 | 2026-07-01 10:00 | 订舱确认"></textarea>
+            </div>
+            <div class="actions">
+                <button style="background:#e2e8f0;color:#4a5568" onclick="closeModal()">取消</button>
+                <button class="btn btn-primary" onclick="saveOrder()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let ADMIN_KEY = "";
+        let ORDERS = [];
+
+        // ===== Login =====
+        function login() {
+            ADMIN_KEY = document.getElementById("keyInput").value.trim();
+            if (!ADMIN_KEY) return;
+            loadOrders();
+        }
+
+        function logout() {
+            ADMIN_KEY = ""; ORDERS = [];
+            document.getElementById("mainPanel").style.display = "none";
+            document.getElementById("loginBox").style.display = "block";
+            document.getElementById("loginError").style.display = "none";
+        }
+
+        // ===== Load orders =====
+        async function loadOrders() {
+            try {
+                const url = "/api/track?key=" + encodeURIComponent(ADMIN_KEY);
+                const res = await fetch(url);
+                if (res.status === 401) {
+                    document.getElementById("loginError").style.display = "block";
+                    return;
+                }
+                const data = await res.json();
+                ORDERS = data.orders || [];
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("mainPanel").style.display = "block";
+                document.getElementById("envBadge").textContent = "· 共 " + ORDERS.length + " 条";
+                renderStats();
+                renderTable();
+            } catch(e) {
+                document.getElementById("loginError").textContent = "连接失败: " + e.message;
+                document.getElementById("loginError").style.display = "block";
+            }
+        }
+
+        // ===== Stats =====
+        function renderStats() {
+            const t = ORDERS.length;
+            const tr = ORDERS.filter(o => o.status === "in-transit").length;
+            const de = ORDERS.filter(o => o.status === "delivered").length;
+            document.getElementById("statsRow").innerHTML =
+                `<div class="stat-card"><div class="num">${t}</div><div class="label">总订单</div></div>
+                 <div class="stat-card"><div class="num">${tr}</div><div class="label">运输中</div></div>
+                 <div class="stat-card"><div class="num">${de}</div><div class="label">已签收</div></div>
+                 <div class="stat-card"><div class="num">${t - tr - de}</div><div class="label">其他</div></div>`;
+        }
+
+        // ===== Table =====
+        function renderTable() {
+            const q = document.getElementById("searchInput").value.trim().toLowerCase();
+            var list = ORDERS;
+            if (q) list = ORDERS.filter(o => (o.no||"").toLowerCase().includes(q) || (o.client||"").toLowerCase().includes(q));
+            var tbody = document.getElementById("tableBody");
+            if (!list.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="empty-state">暂无数据</td></tr>';
+                return;
+            }
+            tbody.innerHTML = list.map(function(o) {
+                var cls = "badge badge-" + (o.status || "pending");
+                return "<tr>" +
+                    "<td><strong>" + (o.no||"-") + "</strong></td>" +
+                    "<td>" + (o.client||"-") + "</td>" +
+                    "<td>" + (o.type||"-") + "</td>" +
+                    "<td style='font-size:0.82rem'>" + (o.route||"-") + "</td>" +
+                    "<td><span class='" + cls + "'>" + (o.statusText||o.status||"-") + "</span></td>" +
+                    "<td>" + (o.eta||"-") + "</td>" +
+                    "<td class='actions'>" +
+                    "<button class='btn btn-primary btn-sm' onclick='editOrder(\"" + o.no + "\")'>编辑</button>" +
+                    "<button class='btn btn-danger btn-sm' onclick='deleteOrder(\"" + o.no + "\")'>删除</button>" +
+                    "</td></tr>";
+            }).join("");
+        }
+
+        // ===== Modal =====
+        function openModal() {
+            document.getElementById("modalTitle").textContent = "新建订单";
+            document.getElementById("editNo").value = "";
+            ["fNo","fClient","fRoute","fEta","fVessel","fContainer","fTracking","fCarrier","fSteps"].forEach(function(id) {
+                document.getElementById(id).value = "";
+            });
+            document.getElementById("fType").value = "海运整柜 (FCL)";
+            document.getElementById("fStatus").value = "pending";
+            document.getElementById("modalOverlay").classList.add("active");
+        }
+
+        function editOrder(no) {
+            var o = ORDERS.find(function(x) { return x.no === no; });
+            if (!o) return;
+            document.getElementById("modalTitle").textContent = "编辑订单 - " + no;
+            document.getElementById("editNo").value = no;
+            document.getElementById("fNo").value = o.no;
+            document.getElementById("fClient").value = o.client || "";
+            document.getElementById("fType").value = o.type || "海运整柜 (FCL)";
+            document.getElementById("fStatus").value = o.status || "pending";
+            document.getElementById("fRoute").value = o.route || "";
+            document.getElementById("fEta").value = o.eta || "";
+            document.getElementById("fVessel").value = o.vessel || "";
+            document.getElementById("fContainer").value = o.container || "";
+            document.getElementById("fTracking").value = o.trackingNumber || "";
+            document.getElementById("fCarrier").value = o.carrier || "";
+            document.getElementById("fSteps").value = (o.steps || []).map(function(s) {
+                return (s.title||"") + " | " + (s.time||"") + " | " + (s.desc||"");
+            }).join("\n");
+            document.getElementById("modalOverlay").classList.add("active");
+        }
+
+        function closeModal() {
+            document.getElementById("modalOverlay").classList.remove("active");
+        }
+
+        // ===== Save =====
+        async function saveOrder() {
+            var no = document.getElementById("fNo").value.trim();
+            if (!no) { toast("请填写订单号", true); return; }
+
+            var stepsText = document.getElementById("fSteps").value.trim();
+            var steps = stepsText ? stepsText.split("\n").filter(function(s) { return s.trim(); }).map(function(s, i) {
+                var p = s.split("|").map(function(x) { return x.trim(); });
+                return { title: p[0]||"", time: p[1]||"", desc: p[2]||"", done: true, current: i === 0 };
+            }) : [];
+
+            var statusMap = { pending: "待处理", booking: "已订舱", "in-transit": "运输中", customs: "清关中", delivered: "已签收" };
+            var status = document.getElementById("fStatus").value;
+
+            var body = {
+                no: no,
+                client: document.getElementById("fClient").value.trim(),
+                type: document.getElementById("fType").value,
+                status: status,
+                statusText: statusMap[status] || status,
+                route: document.getElementById("fRoute").value.trim(),
+                eta: document.getElementById("fEta").value.trim(),
+                vessel: document.getElementById("fVessel").value.trim(),
+                container: document.getElementById("fContainer").value.trim(),
+                trackingNumber: document.getElementById("fTracking").value.trim(),
+                carrier: document.getElementById("fCarrier").value.trim(),
+                steps: steps
+            };
+            try {
+                var res = await fetch("/api/track?key=" + encodeURIComponent(ADMIN_KEY), {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+                if (!res.ok) throw new Error("保存失败");
+                closeModal();
+                toast("订单 " + no + " 已保存");
+                loadOrders();
+            } catch(e) {
+                toast("保存失败: " + e.message, true);
+            }
+        }
+
+        // ===== Delete =====
+        async function deleteOrder(no) {
+            if (!confirm("确定删除订单 " + no + " 吗？")) return;
+            try {
+                var res = await fetch("/api/track?key=" + encodeURIComponent(ADMIN_KEY) + "&no=" + no, { method: "DELETE" });
+                if (!res.ok) throw new Error("删除失败");
+                toast("订单 " + no + " 已删除");
+                loadOrders();
+            } catch(e) {
+                toast("删除失败: " + e.message, true);
+            }
+        }
+
+        // ===== Toast =====
+        function toast(msg, isErr) {
+            var t = document.getElementById("toast");
+            t.textContent = msg;
+            t.className = "toast " + (isErr ? "err" : "ok") + " show";
+            setTimeout(function() { t.classList.remove("show"); }, 3000);
+        }
+    </script>
+</body>
+</html>

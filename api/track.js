@@ -100,39 +100,14 @@ async function getStore() {
 
 const TRACK17_BASE = "https://api.17track.net/track/v2.2";
 
-// 注册运单到 17Track（只注册一次，已注册的会自动跳过）
-async function register17Track(trackingNumber, carrier) {
-  const apiKey = process.env.TRACK17_API_KEY;
-  if (!apiKey || !trackingNumber) return false;
 
-  try {
-    const body = [{ number: trackingNumber }];
-    if (carrier) body[0].carrier = carrier;
-
-    const res = await fetch(TRACK17_BASE + "/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "17token": apiKey },
-      body: JSON.stringify(body)
-    });
-    const data = await res.json();
-    // code=0 注册成功，code=101 已注册过，都视为成功
-    return data.code === 0 || data.code === 101 || data.code === 102;
-  } catch (e) {
-    console.error("17Track register error:", e.message);
-    return false;
-  }
-}
-
-// 查询 17Track 实时物流
+// 查询 17Track 实时物流（用户需先在 17Track 后台手动添加运单号）
 async function query17Track(trackingNumber, carrier) {
   const apiKey = process.env.TRACK17_API_KEY;
   if (!apiKey || !trackingNumber) return null;
 
   try {
-    // 先注册运单号到 17Track
-    await register17Track(trackingNumber, carrier);
-
-    // 查询物流轨迹
+    // 查询物流轨迹（不自动注册，用户在 17Track 后台手动添加）
     const body = [{ number: trackingNumber }];
     if (carrier) body[0].carrier = carrier;
 
@@ -288,3 +263,4 @@ export default async function handler(req, res) {
   }
   return res.status(405).json({ error: "不支持的请求方法" });
 }
+

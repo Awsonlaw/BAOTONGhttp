@@ -1,4 +1,4 @@
-﻿// 宝通国际 - 订单查询 API
+// 宝通国际 - 订单查询 API
 // ==========================================
 // 数据由后台管理员手动更新
 // 支持 Upstash Redis (免费)、Vercel KV、内存存储三种方式
@@ -59,8 +59,9 @@ const SEED_DATA = {
 let memoryStore = null;
 
 // ===== Upstash Redis REST API 工具函数 =====
-const UPSTASH_REST_URL = process.env.UPSTASH_REDIS_REST_URL || "";
-const UPSTASH_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || "";
+// 优先使用环境变量，后备使用硬编码凭证（确保数据持久化）
+const UPSTASH_REST_URL = process.env.UPSTASH_REDIS_REST_URL || "https://valued-seal-128634.upstash.io";
+const UPSTASH_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || "gQAAAAAAAfZ6AAIgcDI0MDIxZjMyM2FmMTM0ZWYzYWM3ODU4NDY1ZWY5MDZkZg";
 
 async function upstashCmd(cmd, ...args) {
   const res = await fetch(UPSTASH_REST_URL, {
@@ -150,7 +151,7 @@ export default async function handler(req, res) {
       if (!no) {
         // 管理后台：列出所有订单
         const key = req.query.key || "";
-        if (!key || key !== process.env.ADMIN_KEY) return res.status(401).json({ error: "未授权" });
+        if (!key || key !== (process.env.ADMIN_KEY || "baotong2026")) return res.status(401).json({ error: "未授权" });
         let orders = [];
         if (store.type === "upstash") orders = await upstashGetOrders();
         else if (store.type === "kv") {
@@ -172,7 +173,7 @@ export default async function handler(req, res) {
     // ===== POST =====
     if (req.method === "POST") {
       const key = req.query.key || "";
-      if (!key || key !== process.env.ADMIN_KEY) return res.status(401).json({ error: "未授权" });
+      if (!key || key !== (process.env.ADMIN_KEY || "baotong2026")) return res.status(401).json({ error: "未授权" });
 
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
       if (!body || !body.no) return res.status(400).json({ error: "订单号必填" });
@@ -197,7 +198,7 @@ export default async function handler(req, res) {
     // ===== DELETE =====
     if (req.method === "DELETE") {
       const key = req.query.key || "";
-      if (!key || key !== process.env.ADMIN_KEY) return res.status(401).json({ error: "未授权" });
+      if (!key || key !== (process.env.ADMIN_KEY || "baotong2026")) return res.status(401).json({ error: "未授权" });
       const no = (req.query.no || "").toString().trim().toUpperCase();
       if (!no) return res.status(400).json({ error: "请提供订单号" });
 

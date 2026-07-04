@@ -1,27 +1,5 @@
-﻿{
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/track.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.png",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/track(.*)",
-      "dest": "/api/track.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
+{
+  "rewrites": [
+    { "source": "/api/track(.*)", "destination": "/api/track.js" }
   ]
 }

@@ -1,5 +1,1 @@
-{
-  "rewrites": [
-    { "source": "/api/track(.*)", "destination": "/api/track.js" }
-  ]
-}
+{"rewrites":[{"source":"/api/track(.*)","destination":"/api/track.js"}]}
